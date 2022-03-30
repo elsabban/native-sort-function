@@ -6,7 +6,7 @@
 sortFn(1st,2nd,3rd) 
 1st param : array that will be sorted;
 2nd param : direction of sorting on string 'up' or 'down';
-3rd param : if the array consist of objects pass nested propert on string 
+3rd param : if the array consist of objects pass nested properties (one level) on string if normal array pass nothing
 ex:[{id:5},{name:mohamed}] 3rd param will be => 'id'
 */
 // sortFn(example,'up')
@@ -17,7 +17,7 @@ ex:[{id:5},{name:mohamed}] 3rd param will be => 'id'
 sortFn Prototype(1st,2nd) 
 (Array.sortFn(1st,2nd))
 1nd param : direction of sorting on string 'up' or 'down';
-2rd param : if the array consists of objects pass nested propert on string 
+2rd param : if the array consist of objects pass nested properties (one level) on string if normal array pass nothing 
 ex:[{id:5},{name:mohamed}] 2nd param will be => 'id'
 */
 //  exampleArrObj.sortFn('up','id')
@@ -38,7 +38,7 @@ ex:[{id:5},{name:mohamed}] 2nd param will be => 'id'
 // normal function
 function sortFn(arr,sortOrder,property = null) {
   var arrBefore = arr.slice()
-  var arrBeforeAfter = []
+  var arrAfter = []
   var checked = 0;
   var up;
   var down;
@@ -60,14 +60,14 @@ function sortFn(arr,sortOrder,property = null) {
       if (sortOrder == 'up' ? up : down) {
         checked++      
         if((arrBefore.length - 1) === checked ) {
-          arrBeforeAfter.push(arrBefore[i])
+          arrAfter.push(arrBefore[i])
           arrBefore.splice(i,1)
           i= 0;
           x=0;
           checked = 0;
         }
         if(arrBefore.length <= 1) {
-          arrBeforeAfter.push(arrBefore[i])
+          arrAfter.push(arrBefore[i])
         }
       }else {
           checked = 0;
@@ -76,14 +76,14 @@ function sortFn(arr,sortOrder,property = null) {
       }
     }
   }
-  console.log(arrBeforeAfter)
-  return arrBeforeAfter
+  console.log(arrAfter)
+  return arrAfter
   }
 // add functional sort to Array prototype
 Object.defineProperty(Array.prototype, 'sortFn', {
   value: function (sortOrder,property = null) {
     var arrBefore = this.slice()
-    var arrBeforeAfter = []
+    var arrAfter = []
     var checked = 0;
     var up;
     var down;
@@ -105,14 +105,14 @@ Object.defineProperty(Array.prototype, 'sortFn', {
         if (sortOrder == 'up' ? up : down) {
           checked++      
           if((arrBefore.length - 1) === checked ) {
-            arrBeforeAfter.push(arrBefore[i])
+            arrAfter.push(arrBefore[i])
             arrBefore.splice(i,1)
             i= 0;
             x=0;
             checked = 0;
           }
           if(arrBefore.length <= 1) {
-            arrBeforeAfter.push(arrBefore[i])
+            arrAfter.push(arrBefore[i])
           }
         }else {
             checked = 0;
@@ -121,7 +121,7 @@ Object.defineProperty(Array.prototype, 'sortFn', {
         }
       }
     }
-    console.log(arrBeforeAfter)
-    return arrBeforeAfter
+    console.log(arrAfter)
+    return arrAfter
     }
 });
